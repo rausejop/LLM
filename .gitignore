@@ -8,6 +8,12 @@ lib/
 output.txt
 *.url
 
+# Secrets — never commit. Local-only credential files.
+.gh_token
+*.token
+.env
+secrets/
+
 # Python caches.
 __pycache__/
 *.py[cod]
