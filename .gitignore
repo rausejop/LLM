@@ -9,8 +9,9 @@ output.txt
 *.url
 
 # Secrets — never commit. Local-only credential files.
-.gh_token
+.gh_token*
 *.token
+*token*.txt
 .env
 secrets/
 
