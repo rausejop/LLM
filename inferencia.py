@@ -45,8 +45,25 @@ from pathlib import Path
 
 __version__ = '1.0.0'
 
+
+def _base_dir():
+    """Returns the directory that anchors relative default paths.
+
+    When running as a normal script this is the script's own directory. When
+    running as a PyInstaller-frozen executable, ``__file__`` points inside the
+    temporary extraction folder, so the executable's own directory is used
+    instead (where the model, prompt, and lib/ are expected to sit).
+
+    Returns:
+      The base ``Path`` for resolving the model, prompt, and library folder.
+    """
+    if getattr(sys, 'frozen', False):  # Running inside a PyInstaller bundle.
+        return Path(sys.executable).resolve().parent
+    return Path(__file__).resolve().parent
+
+
 # Project root (where the model and the lib/ folder created by carga.py live).
-WORK_DIR = Path(__file__).resolve().parent
+WORK_DIR = _base_dir()
 DEFAULT_MODEL = 'llama-3.2-1b-q4_k_m.gguf'
 DEFAULT_PROMPT = 'prompt.txt'
 DEFAULT_OUTPUT = 'output.txt'

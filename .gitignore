@@ -5,8 +5,13 @@ lib/
 *.part
 
 # Default generation output and local inputs.
-output.txt
+output*.txt
 *.url
+
+# PyInstaller build artifacts.
+build/
+dist/
+*.spec
 
 # Secrets — never commit. Local-only credential files.
 .gh_token*
